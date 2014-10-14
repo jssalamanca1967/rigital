@@ -1,0 +1,9 @@
+{
+    "displayName" : "Workstation",
+    "name" : "workstation",
+    "templateName" : "workstation",
+    "url" : "user.html",
+    "server": "localhost:8080",
+    "context": "/RigitalVer.web/webresources/Workstation",
+    "el" : "#main"
+}

@@ -1,0 +1,11 @@
+{
+    "displayName" : "Repositorio",
+    "name" : "repositorio",
+    "templateName" : "repositorio",
+    "url" : "repositorio.html",
+    "server": "localhost:8080",
+    "server": "localhost:8080",
+    "context": "/RigitalVer.web/webresources/RepositorioMaster",
+    
+    "el" : "#main"
+}

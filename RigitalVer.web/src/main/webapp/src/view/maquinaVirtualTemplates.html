@@ -1,0 +1,135 @@
+<script type="text/template" id="maquinaVirtualList">
+    <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <table class="table striped">
+    <thead>
+    <tr>
+		 <th>Ips</th>
+		 <th>Servicios Asociados</th>
+		 <th>Version</th>
+		 <th>Sistema Operativo</th>
+		 <th>Num Discos</th>
+		 <th>Capacidad Discos</th>
+		 <th>Ram</th>
+		 <th>Num Cores</th>
+		 <th>Fecha Vencimiento</th>
+		 <th>Name</th>
+		 <th>Descripcion</th>
+		 <th>Proposito</th>
+		 <th>Fecha Creacion</th>
+		 <th>Destruido</th>
+		 <th>Caracteristicas</th>
+    <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% _.each(maquinaVirtuals, function(maquinaVirtual) { %>
+    <tr>
+		<td><%= htmlEncode(maquinaVirtual.getDisplay('ips')) %></td>
+		<td><%= htmlEncode(maquinaVirtual.getDisplay('serviciosAsociados')) %></td>
+		<td><%= htmlEncode(maquinaVirtual.getDisplay('version')) %></td>
+		<td><%= htmlEncode(maquinaVirtual.getDisplay('sistemaOperativo')) %></td>
+		<td><%= htmlEncode(maquinaVirtual.getDisplay('numDiscos')) %></td>
+		<td><%= htmlEncode(maquinaVirtual.getDisplay('capacidadDiscos')) %></td>
+		<td><%= htmlEncode(maquinaVirtual.getDisplay('ram')) %></td>
+		<td><%= htmlEncode(maquinaVirtual.getDisplay('numCores')) %></td>
+		<td><%= htmlEncode(maquinaVirtual.getDisplay('fechaVencimiento')) %></td>
+		<td><%= htmlEncode(maquinaVirtual.getDisplay('name')) %></td>
+		<td><%= htmlEncode(maquinaVirtual.getDisplay('descripcion')) %></td>
+		<td><%= htmlEncode(maquinaVirtual.getDisplay('proposito')) %></td>
+		<td><%= htmlEncode(maquinaVirtual.getDisplay('fechaCreacion')) %></td>
+		<td><%= htmlEncode(maquinaVirtual.getDisplay('destruido')) %></td>
+		<td><%= htmlEncode(maquinaVirtual.getDisplay('caracteristicas')) %></td>
+    <td>
+    <% if(showEdit) {%>
+    <a onclick="Backbone.trigger('<%= componentId %>-maquinaVirtual-edit',{id:<%= maquinaVirtual.id %>}); return false" >Edit</a> |
+	<% } %> 
+	<% if(showDelete) {%>
+    <a onclick="Backbone.trigger('<%= componentId %>-maquinaVirtual-delete',{id:<%= maquinaVirtual.id %>}); return false" >Delete</a> 
+	<% } %>    
+	</td>
+    </tr>
+    <% }); %>
+    </tbody>
+    </table>
+    </div>
+</script>
+
+<script type="text/template" id="maquinaVirtual">
+    <div class="form-group">
+    <form role="form" id="<%= componentId %>-maquinaVirtualForm">
+    <% if(maquinaVirtual.id) {%>
+    <input type="hidden" name="id" value="<%= maquinaVirtual.id %>"/>
+    <% }%>
+		<div class="form-group" >
+		<label for="ips">Ips</label>
+    	<input type="text" class="form-control" id="ips" name="ips" placeholder="Enter value" value="<%= maquinaVirtual.get('ips') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="serviciosAsociados">Servicios Asociados</label>
+    	<input type="text" class="form-control" id="serviciosAsociados" name="serviciosAsociados" placeholder="Enter value" value="<%= maquinaVirtual.get('serviciosAsociados') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="version">Version</label>
+    	<input type="text" class="form-control" id="version" name="version" placeholder="Enter value" value="<%= maquinaVirtual.get('version') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="sistemaOperativo">Sistema Operativo</label>
+    	<input type="text" class="form-control" id="sistemaOperativo" name="sistemaOperativo" placeholder="Enter value" value="<%= maquinaVirtual.get('sistemaOperativo') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="numDiscos">Num Discos</label>
+    	<input type="text" class="form-control" id="numDiscos" name="numDiscos" placeholder="Enter value" value="<%= maquinaVirtual.get('numDiscos') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="capacidadDiscos">Capacidad Discos</label>
+    	<input type="text" class="form-control" id="capacidadDiscos" name="capacidadDiscos" placeholder="Enter value" value="<%= maquinaVirtual.get('capacidadDiscos') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="ram">Ram</label>
+    	<input type="text" class="form-control" id="ram" name="ram" placeholder="Enter value" value="<%= maquinaVirtual.get('ram') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="numCores">Num Cores</label>
+    	<input type="text" class="form-control" id="numCores" name="numCores" placeholder="Enter value" value="<%= maquinaVirtual.get('numCores') %>"/>	
+		</div>
+		<div class="form-group" >
+			<label for="fechaVencimiento">Fecha Vencimiento</label>
+    		<input type="text" data-converter="date" data-date-format="dd/mm/yyyy" class="form-control" id="fechaVencimiento"  name="fechaVencimiento" placeholder="Enter value" />
+    		<%= '<scr'+'ipt>' %>
+        	$('#fechaVencimiento').datepicker({autoclose:true});
+        	$('#fechaVencimiento').datepicker('setDate',App.Utils.Converter.date.toDate("<%= maquinaVirtual.get('fechaVencimiento') %>"));
+    		<%= '</scr'+'ipt>' %>
+		</div>
+		<div class="form-group" >
+		<label for="name">Name</label>
+    	<input type="text" class="form-control" id="name" name="name" placeholder="Enter value" value="<%= maquinaVirtual.get('name') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="descripcion">Descripcion</label>
+    	<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Enter value" value="<%= maquinaVirtual.get('descripcion') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="proposito">Proposito</label>
+    	<input type="text" class="form-control" id="proposito" name="proposito" placeholder="Enter value" value="<%= maquinaVirtual.get('proposito') %>"/>	
+		</div>
+		<div class="form-group" >
+			<label for="fechaCreacion">Fecha Creacion</label>
+    		<input type="text" data-converter="date" data-date-format="dd/mm/yyyy" class="form-control" id="fechaCreacion"  name="fechaCreacion" placeholder="Enter value" />
+    		<%= '<scr'+'ipt>' %>
+        	$('#fechaCreacion').datepicker({autoclose:true});
+        	$('#fechaCreacion').datepicker('setDate',App.Utils.Converter.date.toDate("<%= maquinaVirtual.get('fechaCreacion') %>"));
+    		<%= '</scr'+'ipt>' %>
+		</div>
+		<div class="form-group" >
+	    <label>
+    	  <input id="destruido" name="destruido" value="true" type="checkbox" <%= maquinaVirtual.get('destruido')?'checked':'' %>> Destruido
+    	</label>
+		</div>
+		<div class="form-group" >
+		<label for="caracteristicas">Caracteristicas</label>
+    	<input type="text" class="form-control" id="caracteristicas" name="caracteristicas" placeholder="Enter value" value="<%= maquinaVirtual.get('caracteristicas') %>"/>	
+		</div>
+    </form>
+    </div>
+</script> 

@@ -1,0 +1,11 @@
+{
+    "displayName" : "Wiki",
+    "name" : "wiki",
+    "templateName" : "wiki",
+    "url" : "wiki.html",
+    "server": "localhost:8080",
+    "server": "localhost:8080",
+    "context": "/RigitalVer.web/webresources/WikiMaster",
+    
+    "el" : "#main"
+}

@@ -1,0 +1,9 @@
+{
+    "displayName" : "MaquinaVirtual",
+    "name" : "maquinaVirtual",
+    "templateName" : "maquinaVirtual",
+    "url" : "user.html",
+    "server": "localhost:8080",
+    "context": "/RigitalVer.web/webresources/MaquinaVirtual",
+    "el" : "#main"
+}

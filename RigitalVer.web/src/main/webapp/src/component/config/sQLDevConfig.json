@@ -1,0 +1,9 @@
+{
+    "displayName" : "SQLDev",
+    "name" : "sQLDev",
+    "templateName" : "sQLDev",
+    "url" : "user.html",
+    "server": "localhost:8080",
+    "context": "/RigitalVer.web/webresources/SQLDev",
+    "el" : "#main"
+}

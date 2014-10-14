@@ -1,0 +1,9 @@
+{
+    "displayName" : "UsuarioExternoRepo",
+    "name" : "usuarioExternoRepo",
+    "templateName" : "usuarioExternoRepo",
+    "url" : "user.html",
+    "server": "localhost:8080",
+    "context": "/RigitalVer.web/webresources/UsuarioExternoRepo",
+    "el" : "#main"
+}

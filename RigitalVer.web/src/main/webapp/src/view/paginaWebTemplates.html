@@ -1,0 +1,105 @@
+<script type="text/template" id="paginaWebList">
+    <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <table class="table striped">
+    <thead>
+    <tr>
+		 <th>Formato</th>
+		 <th>Ultima Fecha Modificacion</th>
+		 <th>Url</th>
+		 <th>Alias</th>
+		 <th>Name</th>
+		 <th>Descripcion</th>
+		 <th>Proposito</th>
+		 <th>Fecha Creacion</th>
+		 <th>Destruido</th>
+		 <th>Caracteristicas</th>
+    <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% _.each(paginaWebs, function(paginaWeb) { %>
+    <tr>
+		<td><%= htmlEncode(paginaWeb.getDisplay('formato')) %></td>
+		<td><%= htmlEncode(paginaWeb.getDisplay('ultimaFechaModificacion')) %></td>
+		<td><%= htmlEncode(paginaWeb.getDisplay('url')) %></td>
+		<td><%= htmlEncode(paginaWeb.getDisplay('alias')) %></td>
+		<td><%= htmlEncode(paginaWeb.getDisplay('name')) %></td>
+		<td><%= htmlEncode(paginaWeb.getDisplay('descripcion')) %></td>
+		<td><%= htmlEncode(paginaWeb.getDisplay('proposito')) %></td>
+		<td><%= htmlEncode(paginaWeb.getDisplay('fechaCreacion')) %></td>
+		<td><%= htmlEncode(paginaWeb.getDisplay('destruido')) %></td>
+		<td><%= htmlEncode(paginaWeb.getDisplay('caracteristicas')) %></td>
+    <td>
+    <% if(showEdit) {%>
+    <a onclick="Backbone.trigger('<%= componentId %>-paginaWeb-edit',{id:<%= paginaWeb.id %>}); return false" >Edit</a> |
+	<% } %> 
+	<% if(showDelete) {%>
+    <a onclick="Backbone.trigger('<%= componentId %>-paginaWeb-delete',{id:<%= paginaWeb.id %>}); return false" >Delete</a> 
+	<% } %>    
+	</td>
+    </tr>
+    <% }); %>
+    </tbody>
+    </table>
+    </div>
+</script>
+
+<script type="text/template" id="paginaWeb">
+    <div class="form-group">
+    <form role="form" id="<%= componentId %>-paginaWebForm">
+    <% if(paginaWeb.id) {%>
+    <input type="hidden" name="id" value="<%= paginaWeb.id %>"/>
+    <% }%>
+		<div class="form-group" >
+		<label for="formato">Formato</label>
+    	<input type="text" class="form-control" id="formato" name="formato" placeholder="Enter value" value="<%= paginaWeb.get('formato') %>"/>	
+		</div>
+		<div class="form-group" >
+			<label for="ultimaFechaModificacion">Ultima Fecha Modificacion</label>
+    		<input type="text" data-converter="date" data-date-format="dd/mm/yyyy" class="form-control" id="ultimaFechaModificacion"  name="ultimaFechaModificacion" placeholder="Enter value" />
+    		<%= '<scr'+'ipt>' %>
+        	$('#ultimaFechaModificacion').datepicker({autoclose:true});
+        	$('#ultimaFechaModificacion').datepicker('setDate',App.Utils.Converter.date.toDate("<%= paginaWeb.get('ultimaFechaModificacion') %>"));
+    		<%= '</scr'+'ipt>' %>
+		</div>
+		<div class="form-group" >
+		<label for="url">Url</label>
+    	<input type="text" class="form-control" id="url" name="url" placeholder="Enter value" value="<%= paginaWeb.get('url') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="alias">Alias</label>
+    	<input type="text" class="form-control" id="alias" name="alias" placeholder="Enter value" value="<%= paginaWeb.get('alias') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="name">Name</label>
+    	<input type="text" class="form-control" id="name" name="name" placeholder="Enter value" value="<%= paginaWeb.get('name') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="descripcion">Descripcion</label>
+    	<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Enter value" value="<%= paginaWeb.get('descripcion') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="proposito">Proposito</label>
+    	<input type="text" class="form-control" id="proposito" name="proposito" placeholder="Enter value" value="<%= paginaWeb.get('proposito') %>"/>	
+		</div>
+		<div class="form-group" >
+			<label for="fechaCreacion">Fecha Creacion</label>
+    		<input type="text" data-converter="date" data-date-format="dd/mm/yyyy" class="form-control" id="fechaCreacion"  name="fechaCreacion" placeholder="Enter value" />
+    		<%= '<scr'+'ipt>' %>
+        	$('#fechaCreacion').datepicker({autoclose:true});
+        	$('#fechaCreacion').datepicker('setDate',App.Utils.Converter.date.toDate("<%= paginaWeb.get('fechaCreacion') %>"));
+    		<%= '</scr'+'ipt>' %>
+		</div>
+		<div class="form-group" >
+	    <label>
+    	  <input id="destruido" name="destruido" value="true" type="checkbox" <%= paginaWeb.get('destruido')?'checked':'' %>> Destruido
+    	</label>
+		</div>
+		<div class="form-group" >
+		<label for="caracteristicas">Caracteristicas</label>
+    	<input type="text" class="form-control" id="caracteristicas" name="caracteristicas" placeholder="Enter value" value="<%= paginaWeb.get('caracteristicas') %>"/>	
+		</div>
+    </form>
+    </div>
+</script> 

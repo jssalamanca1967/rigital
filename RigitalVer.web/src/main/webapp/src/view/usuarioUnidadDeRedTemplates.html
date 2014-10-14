@@ -1,0 +1,62 @@
+<script type="text/template" id="usuarioUnidadDeRedList">
+    <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <table class="table striped">
+    <thead>
+    <tr>
+		 <th>Name</th>
+		 <th>Login</th>
+		 <th>Permiso Escritura</th>
+		 <th>Permiso Lectura</th>
+    <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% _.each(usuarioUnidadDeReds, function(usuarioUnidadDeRed) { %>
+    <tr>
+		<td><%= htmlEncode(usuarioUnidadDeRed.getDisplay('name')) %></td>
+		<td><%= htmlEncode(usuarioUnidadDeRed.getDisplay('login')) %></td>
+		<td><%= htmlEncode(usuarioUnidadDeRed.getDisplay('permisoEscritura')) %></td>
+		<td><%= htmlEncode(usuarioUnidadDeRed.getDisplay('permisoLectura')) %></td>
+    <td>
+    <% if(showEdit) {%>
+    <a onclick="Backbone.trigger('<%= componentId %>-usuarioUnidadDeRed-edit',{id:<%= usuarioUnidadDeRed.id %>}); return false" >Edit</a> |
+	<% } %> 
+	<% if(showDelete) {%>
+    <a onclick="Backbone.trigger('<%= componentId %>-usuarioUnidadDeRed-delete',{id:<%= usuarioUnidadDeRed.id %>}); return false" >Delete</a> 
+	<% } %>    
+	</td>
+    </tr>
+    <% }); %>
+    </tbody>
+    </table>
+    </div>
+</script>
+
+<script type="text/template" id="usuarioUnidadDeRed">
+    <div class="form-group">
+    <form role="form" id="<%= componentId %>-usuarioUnidadDeRedForm">
+    <% if(usuarioUnidadDeRed.id) {%>
+    <input type="hidden" name="id" value="<%= usuarioUnidadDeRed.id %>"/>
+    <% }%>
+		<div class="form-group" >
+		<label for="name">Name</label>
+    	<input type="text" class="form-control" id="name" name="name" placeholder="Enter value" value="<%= usuarioUnidadDeRed.get('name') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="login">Login</label>
+    	<input type="text" class="form-control" id="login" name="login" placeholder="Enter value" value="<%= usuarioUnidadDeRed.get('login') %>"/>	
+		</div>
+		<div class="form-group" >
+	    <label>
+    	  <input id="permisoEscritura" name="permisoEscritura" value="true" type="checkbox" <%= usuarioUnidadDeRed.get('permisoEscritura')?'checked':'' %>> Permiso Escritura
+    	</label>
+		</div>
+		<div class="form-group" >
+	    <label>
+    	  <input id="permisoLectura" name="permisoLectura" value="true" type="checkbox" <%= usuarioUnidadDeRed.get('permisoLectura')?'checked':'' %>> Permiso Lectura
+    	</label>
+		</div>
+    </form>
+    </div>
+</script> 

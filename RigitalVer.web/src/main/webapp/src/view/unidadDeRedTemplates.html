@@ -1,0 +1,95 @@
+<script type="text/template" id="unidadDeRedList">
+    <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <table class="table striped">
+    <thead>
+    <tr>
+		 <th>Tipos</th>
+		 <th>Servidor</th>
+		 <th>Url</th>
+		 <th>Name</th>
+		 <th>Descripcion</th>
+		 <th>Proposito</th>
+		 <th>Fecha Creacion</th>
+		 <th>Destruido</th>
+		 <th>Caracteristicas</th>
+    <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% _.each(unidadDeReds, function(unidadDeRed) { %>
+    <tr>
+		<td><%= htmlEncode(unidadDeRed.getDisplay('tipos')) %></td>
+		<td><%= htmlEncode(unidadDeRed.getDisplay('servidor')) %></td>
+		<td><%= htmlEncode(unidadDeRed.getDisplay('url')) %></td>
+		<td><%= htmlEncode(unidadDeRed.getDisplay('name')) %></td>
+		<td><%= htmlEncode(unidadDeRed.getDisplay('descripcion')) %></td>
+		<td><%= htmlEncode(unidadDeRed.getDisplay('proposito')) %></td>
+		<td><%= htmlEncode(unidadDeRed.getDisplay('fechaCreacion')) %></td>
+		<td><%= htmlEncode(unidadDeRed.getDisplay('destruido')) %></td>
+		<td><%= htmlEncode(unidadDeRed.getDisplay('caracteristicas')) %></td>
+    <td>
+    <% if(showEdit) {%>
+    <a onclick="Backbone.trigger('<%= componentId %>-unidadDeRed-edit',{id:<%= unidadDeRed.id %>}); return false" >Edit</a> |
+	<% } %> 
+	<% if(showDelete) {%>
+    <a onclick="Backbone.trigger('<%= componentId %>-unidadDeRed-delete',{id:<%= unidadDeRed.id %>}); return false" >Delete</a> 
+	<% } %>    
+	</td>
+    </tr>
+    <% }); %>
+    </tbody>
+    </table>
+    </div>
+</script>
+
+<script type="text/template" id="unidadDeRed">
+    <div class="form-group">
+    <form role="form" id="<%= componentId %>-unidadDeRedForm">
+    <% if(unidadDeRed.id) {%>
+    <input type="hidden" name="id" value="<%= unidadDeRed.id %>"/>
+    <% }%>
+		<div class="form-group" >
+		<label for="tipos">Tipos</label>
+    	<input type="text" class="form-control" id="tipos" name="tipos" placeholder="Enter value" value="<%= unidadDeRed.get('tipos') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="servidor">Servidor</label>
+    	<input type="text" class="form-control" id="servidor" name="servidor" placeholder="Enter value" value="<%= unidadDeRed.get('servidor') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="url">Url</label>
+    	<input type="text" class="form-control" id="url" name="url" placeholder="Enter value" value="<%= unidadDeRed.get('url') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="name">Name</label>
+    	<input type="text" class="form-control" id="name" name="name" placeholder="Enter value" value="<%= unidadDeRed.get('name') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="descripcion">Descripcion</label>
+    	<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Enter value" value="<%= unidadDeRed.get('descripcion') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="proposito">Proposito</label>
+    	<input type="text" class="form-control" id="proposito" name="proposito" placeholder="Enter value" value="<%= unidadDeRed.get('proposito') %>"/>	
+		</div>
+		<div class="form-group" >
+			<label for="fechaCreacion">Fecha Creacion</label>
+    		<input type="text" data-converter="date" data-date-format="dd/mm/yyyy" class="form-control" id="fechaCreacion"  name="fechaCreacion" placeholder="Enter value" />
+    		<%= '<scr'+'ipt>' %>
+        	$('#fechaCreacion').datepicker({autoclose:true});
+        	$('#fechaCreacion').datepicker('setDate',App.Utils.Converter.date.toDate("<%= unidadDeRed.get('fechaCreacion') %>"));
+    		<%= '</scr'+'ipt>' %>
+		</div>
+		<div class="form-group" >
+	    <label>
+    	  <input id="destruido" name="destruido" value="true" type="checkbox" <%= unidadDeRed.get('destruido')?'checked':'' %>> Destruido
+    	</label>
+		</div>
+		<div class="form-group" >
+		<label for="caracteristicas">Caracteristicas</label>
+    	<input type="text" class="form-control" id="caracteristicas" name="caracteristicas" placeholder="Enter value" value="<%= unidadDeRed.get('caracteristicas') %>"/>	
+		</div>
+    </form>
+    </div>
+</script> 

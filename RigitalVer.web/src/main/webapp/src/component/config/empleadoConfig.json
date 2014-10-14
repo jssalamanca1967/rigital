@@ -1,0 +1,9 @@
+{
+    "displayName" : "Empleado",
+    "name" : "empleado",
+    "templateName" : "empleado",
+    "url" : "user.html",
+    "server": "localhost:8080",
+    "context": "/RigitalVer.web/webresources/Empleado",
+    "el" : "#main"
+}

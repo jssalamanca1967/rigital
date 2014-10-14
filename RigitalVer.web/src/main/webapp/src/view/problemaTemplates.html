@@ -1,0 +1,70 @@
+<script type="text/template" id="problemaList">
+    <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <table class="table striped">
+    <thead>
+    <tr>
+		 <th>Name</th>
+		 <th>Descripcion</th>
+		 <th>Fecha De Ocurrencia</th>
+		 <th>Empleado Id</th>
+    <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% _.each(problemas, function(problema) { %>
+    <tr>
+		<td><%= htmlEncode(problema.getDisplay('name')) %></td>
+		<td><%= htmlEncode(problema.getDisplay('descripcion')) %></td>
+		<td><%= htmlEncode(problema.getDisplay('fechaDeOcurrencia')) %></td>
+		<td><%= htmlEncode(problema.getDisplay('empleadoId')) %></td>
+    <td>
+    <% if(showEdit) {%>
+    <a onclick="Backbone.trigger('<%= componentId %>-problema-edit',{id:<%= problema.id %>}); return false" >Edit</a> |
+	<% } %> 
+	<% if(showDelete) {%>
+    <a onclick="Backbone.trigger('<%= componentId %>-problema-delete',{id:<%= problema.id %>}); return false" >Delete</a> 
+	<% } %>    
+	</td>
+    </tr>
+    <% }); %>
+    </tbody>
+    </table>
+    </div>
+</script>
+
+<script type="text/template" id="problema">
+    <div class="form-group">
+    <form role="form" id="<%= componentId %>-problemaForm">
+    <% if(problema.id) {%>
+    <input type="hidden" name="id" value="<%= problema.id %>"/>
+    <% }%>
+		<div class="form-group" >
+		<label for="name">Name</label>
+    	<input type="text" class="form-control" id="name" name="name" placeholder="Enter value" value="<%= problema.get('name') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="descripcion">Descripcion</label>
+    	<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Enter value" value="<%= problema.get('descripcion') %>"/>	
+		</div>
+		<div class="form-group" >
+			<label for="fechaDeOcurrencia">Fecha De Ocurrencia</label>
+    		<input type="text" data-converter="date" data-date-format="dd/mm/yyyy" class="form-control" id="fechaDeOcurrencia"  name="fechaDeOcurrencia" placeholder="Enter value" />
+    		<%= '<scr'+'ipt>' %>
+        	$('#fechaDeOcurrencia').datepicker({autoclose:true});
+        	$('#fechaDeOcurrencia').datepicker('setDate',App.Utils.Converter.date.toDate("<%= problema.get('fechaDeOcurrencia') %>"));
+    		<%= '</scr'+'ipt>' %>
+		</div>
+		<div class="form-group" >
+ 
+			<label for="empleadoidId">Empleado Id</label> 
+            <select class="form-control" id="empleadoId" name="empleadoId">
+			  <option value="">None</option>
+            <% empleado.each(function(empleadoid) { %> 
+              <option value="<%=empleadoid.get('id')%>" <% if(problema.get('empleadoId')==empleadoid.get('id')) {%>selected<%}%> ><%=empleadoid.get('name')%></option>
+            <% }); %>                
+            </select>  
+		</div>
+    </form>
+    </div>
+</script> 

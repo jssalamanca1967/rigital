@@ -1,0 +1,9 @@
+{
+    "displayName" : "Estudiante",
+    "name" : "estudiante",
+    "templateName" : "estudiante",
+    "url" : "user.html",
+    "server": "localhost:8080",
+    "context": "/RigitalVer.web/webresources/Estudiante",
+    "el" : "#main"
+}

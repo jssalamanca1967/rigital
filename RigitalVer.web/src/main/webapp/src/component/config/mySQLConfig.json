@@ -1,0 +1,9 @@
+{
+    "displayName" : "MySQL",
+    "name" : "mySQL",
+    "templateName" : "mySQL",
+    "url" : "user.html",
+    "server": "localhost:8080",
+    "context": "/RigitalVer.web/webresources/MySQL",
+    "el" : "#main"
+}

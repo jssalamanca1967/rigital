@@ -1,0 +1,11 @@
+{
+    "displayName" : "PaginaWeb",
+    "name" : "paginaweb",
+    "templateName" : "paginaweb",
+    "url" : "paginaweb.html",
+    "server": "localhost:8080",
+    "server": "localhost:8080",
+    "context": "/RigitalVer.web/webresources/PaginaWebMaster",
+    
+    "el" : "#main"
+}

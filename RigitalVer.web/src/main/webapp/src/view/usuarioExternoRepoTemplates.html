@@ -1,0 +1,68 @@
+<script type="text/template" id="usuarioExternoRepoList">
+    <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <table class="table striped">
+    <thead>
+    <tr>
+		 <th>Tipo Acceso</th>
+		 <th>Name</th>
+		 <th>Login</th>
+		 <th>Permiso Escritura</th>
+		 <th>Permiso Lectura</th>
+    <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% _.each(usuarioExternoRepos, function(usuarioExternoRepo) { %>
+    <tr>
+		<td><%= htmlEncode(usuarioExternoRepo.getDisplay('tipoAcceso')) %></td>
+		<td><%= htmlEncode(usuarioExternoRepo.getDisplay('name')) %></td>
+		<td><%= htmlEncode(usuarioExternoRepo.getDisplay('login')) %></td>
+		<td><%= htmlEncode(usuarioExternoRepo.getDisplay('permisoEscritura')) %></td>
+		<td><%= htmlEncode(usuarioExternoRepo.getDisplay('permisoLectura')) %></td>
+    <td>
+    <% if(showEdit) {%>
+    <a onclick="Backbone.trigger('<%= componentId %>-usuarioExternoRepo-edit',{id:<%= usuarioExternoRepo.id %>}); return false" >Edit</a> |
+	<% } %> 
+	<% if(showDelete) {%>
+    <a onclick="Backbone.trigger('<%= componentId %>-usuarioExternoRepo-delete',{id:<%= usuarioExternoRepo.id %>}); return false" >Delete</a> 
+	<% } %>    
+	</td>
+    </tr>
+    <% }); %>
+    </tbody>
+    </table>
+    </div>
+</script>
+
+<script type="text/template" id="usuarioExternoRepo">
+    <div class="form-group">
+    <form role="form" id="<%= componentId %>-usuarioExternoRepoForm">
+    <% if(usuarioExternoRepo.id) {%>
+    <input type="hidden" name="id" value="<%= usuarioExternoRepo.id %>"/>
+    <% }%>
+		<div class="form-group" >
+		<label for="tipoAcceso">Tipo Acceso</label>
+    	<input type="text" class="form-control" id="tipoAcceso" name="tipoAcceso" placeholder="Enter value" value="<%= usuarioExternoRepo.get('tipoAcceso') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="name">Name</label>
+    	<input type="text" class="form-control" id="name" name="name" placeholder="Enter value" value="<%= usuarioExternoRepo.get('name') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="login">Login</label>
+    	<input type="text" class="form-control" id="login" name="login" placeholder="Enter value" value="<%= usuarioExternoRepo.get('login') %>"/>	
+		</div>
+		<div class="form-group" >
+	    <label>
+    	  <input id="permisoEscritura" name="permisoEscritura" value="true" type="checkbox" <%= usuarioExternoRepo.get('permisoEscritura')?'checked':'' %>> Permiso Escritura
+    	</label>
+		</div>
+		<div class="form-group" >
+	    <label>
+    	  <input id="permisoLectura" name="permisoLectura" value="true" type="checkbox" <%= usuarioExternoRepo.get('permisoLectura')?'checked':'' %>> Permiso Lectura
+    	</label>
+		</div>
+    </form>
+    </div>
+</script> 

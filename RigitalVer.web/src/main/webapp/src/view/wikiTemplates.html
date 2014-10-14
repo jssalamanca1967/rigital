@@ -1,0 +1,89 @@
+<script type="text/template" id="wikiList">
+    <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <table class="table striped">
+    <thead>
+    <tr>
+		 <th>Servidor_host</th>
+		 <th>Ruta Servidor</th>
+		 <th>Name</th>
+		 <th>Descripcion</th>
+		 <th>Proposito</th>
+		 <th>Fecha Creacion</th>
+		 <th>Destruido</th>
+		 <th>Caracteristicas</th>
+    <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% _.each(wikis, function(wiki) { %>
+    <tr>
+		<td><%= htmlEncode(wiki.getDisplay('servidor_host')) %></td>
+		<td><%= htmlEncode(wiki.getDisplay('rutaServidor')) %></td>
+		<td><%= htmlEncode(wiki.getDisplay('name')) %></td>
+		<td><%= htmlEncode(wiki.getDisplay('descripcion')) %></td>
+		<td><%= htmlEncode(wiki.getDisplay('proposito')) %></td>
+		<td><%= htmlEncode(wiki.getDisplay('fechaCreacion')) %></td>
+		<td><%= htmlEncode(wiki.getDisplay('destruido')) %></td>
+		<td><%= htmlEncode(wiki.getDisplay('caracteristicas')) %></td>
+    <td>
+    <% if(showEdit) {%>
+    <a onclick="Backbone.trigger('<%= componentId %>-wiki-edit',{id:<%= wiki.id %>}); return false" >Edit</a> |
+	<% } %> 
+	<% if(showDelete) {%>
+    <a onclick="Backbone.trigger('<%= componentId %>-wiki-delete',{id:<%= wiki.id %>}); return false" >Delete</a> 
+	<% } %>    
+	</td>
+    </tr>
+    <% }); %>
+    </tbody>
+    </table>
+    </div>
+</script>
+
+<script type="text/template" id="wiki">
+    <div class="form-group">
+    <form role="form" id="<%= componentId %>-wikiForm">
+    <% if(wiki.id) {%>
+    <input type="hidden" name="id" value="<%= wiki.id %>"/>
+    <% }%>
+		<div class="form-group" >
+		<label for="servidor_host">Servidor_host</label>
+    	<input type="text" class="form-control" id="servidor_host" name="servidor_host" placeholder="Enter value" value="<%= wiki.get('servidor_host') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="rutaServidor">Ruta Servidor</label>
+    	<input type="text" class="form-control" id="rutaServidor" name="rutaServidor" placeholder="Enter value" value="<%= wiki.get('rutaServidor') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="name">Name</label>
+    	<input type="text" class="form-control" id="name" name="name" placeholder="Enter value" value="<%= wiki.get('name') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="descripcion">Descripcion</label>
+    	<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Enter value" value="<%= wiki.get('descripcion') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="proposito">Proposito</label>
+    	<input type="text" class="form-control" id="proposito" name="proposito" placeholder="Enter value" value="<%= wiki.get('proposito') %>"/>	
+		</div>
+		<div class="form-group" >
+			<label for="fechaCreacion">Fecha Creacion</label>
+    		<input type="text" data-converter="date" data-date-format="dd/mm/yyyy" class="form-control" id="fechaCreacion"  name="fechaCreacion" placeholder="Enter value" />
+    		<%= '<scr'+'ipt>' %>
+        	$('#fechaCreacion').datepicker({autoclose:true});
+        	$('#fechaCreacion').datepicker('setDate',App.Utils.Converter.date.toDate("<%= wiki.get('fechaCreacion') %>"));
+    		<%= '</scr'+'ipt>' %>
+		</div>
+		<div class="form-group" >
+	    <label>
+    	  <input id="destruido" name="destruido" value="true" type="checkbox" <%= wiki.get('destruido')?'checked':'' %>> Destruido
+    	</label>
+		</div>
+		<div class="form-group" >
+		<label for="caracteristicas">Caracteristicas</label>
+    	<input type="text" class="form-control" id="caracteristicas" name="caracteristicas" placeholder="Enter value" value="<%= wiki.get('caracteristicas') %>"/>	
+		</div>
+    </form>
+    </div>
+</script> 

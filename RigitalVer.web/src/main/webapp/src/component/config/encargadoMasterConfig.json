@@ -1,0 +1,11 @@
+{
+    "displayName" : "Encargado",
+    "name" : "encargado",
+    "templateName" : "encargado",
+    "url" : "encargado.html",
+    "server": "localhost:8080",
+    "server": "localhost:8080",
+    "context": "/RigitalVer.web/webresources/EncargadoMaster",
+    
+    "el" : "#main"
+}

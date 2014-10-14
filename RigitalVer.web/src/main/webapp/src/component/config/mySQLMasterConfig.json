@@ -1,0 +1,11 @@
+{
+    "displayName" : "MySQL",
+    "name" : "mysql",
+    "templateName" : "mysql",
+    "url" : "mysql.html",
+    "server": "localhost:8080",
+    "server": "localhost:8080",
+    "context": "/RigitalVer.web/webresources/MySQLMaster",
+    
+    "el" : "#main"
+}

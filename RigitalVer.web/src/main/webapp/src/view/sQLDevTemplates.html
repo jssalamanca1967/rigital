@@ -1,0 +1,93 @@
+<script type="text/template" id="sQLDevList">
+    <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <table class="table striped">
+    <thead>
+    <tr>
+		 <th>Fecha Vencimiento</th>
+		 <th>Servidor</th>
+		 <th>Name</th>
+		 <th>Descripcion</th>
+		 <th>Proposito</th>
+		 <th>Fecha Creacion</th>
+		 <th>Destruido</th>
+		 <th>Caracteristicas</th>
+    <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% _.each(sQLDevs, function(sQLDev) { %>
+    <tr>
+		<td><%= htmlEncode(sQLDev.getDisplay('fechaVencimiento')) %></td>
+		<td><%= htmlEncode(sQLDev.getDisplay('servidor')) %></td>
+		<td><%= htmlEncode(sQLDev.getDisplay('name')) %></td>
+		<td><%= htmlEncode(sQLDev.getDisplay('descripcion')) %></td>
+		<td><%= htmlEncode(sQLDev.getDisplay('proposito')) %></td>
+		<td><%= htmlEncode(sQLDev.getDisplay('fechaCreacion')) %></td>
+		<td><%= htmlEncode(sQLDev.getDisplay('destruido')) %></td>
+		<td><%= htmlEncode(sQLDev.getDisplay('caracteristicas')) %></td>
+    <td>
+    <% if(showEdit) {%>
+    <a onclick="Backbone.trigger('<%= componentId %>-sQLDev-edit',{id:<%= sQLDev.id %>}); return false" >Edit</a> |
+	<% } %> 
+	<% if(showDelete) {%>
+    <a onclick="Backbone.trigger('<%= componentId %>-sQLDev-delete',{id:<%= sQLDev.id %>}); return false" >Delete</a> 
+	<% } %>    
+	</td>
+    </tr>
+    <% }); %>
+    </tbody>
+    </table>
+    </div>
+</script>
+
+<script type="text/template" id="sQLDev">
+    <div class="form-group">
+    <form role="form" id="<%= componentId %>-sQLDevForm">
+    <% if(sQLDev.id) {%>
+    <input type="hidden" name="id" value="<%= sQLDev.id %>"/>
+    <% }%>
+		<div class="form-group" >
+			<label for="fechaVencimiento">Fecha Vencimiento</label>
+    		<input type="text" data-converter="date" data-date-format="dd/mm/yyyy" class="form-control" id="fechaVencimiento"  name="fechaVencimiento" placeholder="Enter value" />
+    		<%= '<scr'+'ipt>' %>
+        	$('#fechaVencimiento').datepicker({autoclose:true});
+        	$('#fechaVencimiento').datepicker('setDate',App.Utils.Converter.date.toDate("<%= sQLDev.get('fechaVencimiento') %>"));
+    		<%= '</scr'+'ipt>' %>
+		</div>
+		<div class="form-group" >
+		<label for="servidor">Servidor</label>
+    	<input type="text" class="form-control" id="servidor" name="servidor" placeholder="Enter value" value="<%= sQLDev.get('servidor') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="name">Name</label>
+    	<input type="text" class="form-control" id="name" name="name" placeholder="Enter value" value="<%= sQLDev.get('name') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="descripcion">Descripcion</label>
+    	<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Enter value" value="<%= sQLDev.get('descripcion') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="proposito">Proposito</label>
+    	<input type="text" class="form-control" id="proposito" name="proposito" placeholder="Enter value" value="<%= sQLDev.get('proposito') %>"/>	
+		</div>
+		<div class="form-group" >
+			<label for="fechaCreacion">Fecha Creacion</label>
+    		<input type="text" data-converter="date" data-date-format="dd/mm/yyyy" class="form-control" id="fechaCreacion"  name="fechaCreacion" placeholder="Enter value" />
+    		<%= '<scr'+'ipt>' %>
+        	$('#fechaCreacion').datepicker({autoclose:true});
+        	$('#fechaCreacion').datepicker('setDate',App.Utils.Converter.date.toDate("<%= sQLDev.get('fechaCreacion') %>"));
+    		<%= '</scr'+'ipt>' %>
+		</div>
+		<div class="form-group" >
+	    <label>
+    	  <input id="destruido" name="destruido" value="true" type="checkbox" <%= sQLDev.get('destruido')?'checked':'' %>> Destruido
+    	</label>
+		</div>
+		<div class="form-group" >
+		<label for="caracteristicas">Caracteristicas</label>
+    	<input type="text" class="form-control" id="caracteristicas" name="caracteristicas" placeholder="Enter value" value="<%= sQLDev.get('caracteristicas') %>"/>	
+		</div>
+    </form>
+    </div>
+</script> 

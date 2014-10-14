@@ -1,0 +1,9 @@
+{
+    "displayName" : "ContenedorWeb",
+    "name" : "contenedorWeb",
+    "templateName" : "contenedorWeb",
+    "url" : "user.html",
+    "server": "localhost:8080",
+    "context": "/RigitalVer.web/webresources/ContenedorWeb",
+    "el" : "#main"
+}

@@ -1,0 +1,9 @@
+{
+    "displayName" : "UnidadDeRed",
+    "name" : "unidadDeRed",
+    "templateName" : "unidadDeRed",
+    "url" : "user.html",
+    "server": "localhost:8080",
+    "context": "/RigitalVer.web/webresources/UnidadDeRed",
+    "el" : "#main"
+}

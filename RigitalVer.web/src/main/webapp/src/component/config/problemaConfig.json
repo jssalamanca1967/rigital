@@ -1,0 +1,9 @@
+{
+    "displayName" : "Problema",
+    "name" : "problema",
+    "templateName" : "problema",
+    "url" : "user.html",
+    "server": "localhost:8080",
+    "context": "/RigitalVer.web/webresources/Problema",
+    "el" : "#main"
+}

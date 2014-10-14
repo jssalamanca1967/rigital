@@ -1,0 +1,9 @@
+{
+    "displayName" : "SoftwareSalas",
+    "name" : "softwareSalas",
+    "templateName" : "softwareSalas",
+    "url" : "user.html",
+    "server": "localhost:8080",
+    "context": "/RigitalVer.web/webresources/SoftwareSalas",
+    "el" : "#main"
+}

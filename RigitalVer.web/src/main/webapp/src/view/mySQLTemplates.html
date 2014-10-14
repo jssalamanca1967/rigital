@@ -1,0 +1,89 @@
+<script type="text/template" id="mySQLList">
+    <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <table class="table striped">
+    <thead>
+    <tr>
+		 <th>Descripcion Destino</th>
+		 <th>Servidor</th>
+		 <th>Name</th>
+		 <th>Descripcion</th>
+		 <th>Proposito</th>
+		 <th>Fecha Creacion</th>
+		 <th>Destruido</th>
+		 <th>Caracteristicas</th>
+    <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% _.each(mySQLs, function(mySQL) { %>
+    <tr>
+		<td><%= htmlEncode(mySQL.getDisplay('descripcionDestino')) %></td>
+		<td><%= htmlEncode(mySQL.getDisplay('servidor')) %></td>
+		<td><%= htmlEncode(mySQL.getDisplay('name')) %></td>
+		<td><%= htmlEncode(mySQL.getDisplay('descripcion')) %></td>
+		<td><%= htmlEncode(mySQL.getDisplay('proposito')) %></td>
+		<td><%= htmlEncode(mySQL.getDisplay('fechaCreacion')) %></td>
+		<td><%= htmlEncode(mySQL.getDisplay('destruido')) %></td>
+		<td><%= htmlEncode(mySQL.getDisplay('caracteristicas')) %></td>
+    <td>
+    <% if(showEdit) {%>
+    <a onclick="Backbone.trigger('<%= componentId %>-mySQL-edit',{id:<%= mySQL.id %>}); return false" >Edit</a> |
+	<% } %> 
+	<% if(showDelete) {%>
+    <a onclick="Backbone.trigger('<%= componentId %>-mySQL-delete',{id:<%= mySQL.id %>}); return false" >Delete</a> 
+	<% } %>    
+	</td>
+    </tr>
+    <% }); %>
+    </tbody>
+    </table>
+    </div>
+</script>
+
+<script type="text/template" id="mySQL">
+    <div class="form-group">
+    <form role="form" id="<%= componentId %>-mySQLForm">
+    <% if(mySQL.id) {%>
+    <input type="hidden" name="id" value="<%= mySQL.id %>"/>
+    <% }%>
+		<div class="form-group" >
+		<label for="descripcionDestino">Descripcion Destino</label>
+    	<input type="text" class="form-control" id="descripcionDestino" name="descripcionDestino" placeholder="Enter value" value="<%= mySQL.get('descripcionDestino') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="servidor">Servidor</label>
+    	<input type="text" class="form-control" id="servidor" name="servidor" placeholder="Enter value" value="<%= mySQL.get('servidor') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="name">Name</label>
+    	<input type="text" class="form-control" id="name" name="name" placeholder="Enter value" value="<%= mySQL.get('name') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="descripcion">Descripcion</label>
+    	<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Enter value" value="<%= mySQL.get('descripcion') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="proposito">Proposito</label>
+    	<input type="text" class="form-control" id="proposito" name="proposito" placeholder="Enter value" value="<%= mySQL.get('proposito') %>"/>	
+		</div>
+		<div class="form-group" >
+			<label for="fechaCreacion">Fecha Creacion</label>
+    		<input type="text" data-converter="date" data-date-format="dd/mm/yyyy" class="form-control" id="fechaCreacion"  name="fechaCreacion" placeholder="Enter value" />
+    		<%= '<scr'+'ipt>' %>
+        	$('#fechaCreacion').datepicker({autoclose:true});
+        	$('#fechaCreacion').datepicker('setDate',App.Utils.Converter.date.toDate("<%= mySQL.get('fechaCreacion') %>"));
+    		<%= '</scr'+'ipt>' %>
+		</div>
+		<div class="form-group" >
+	    <label>
+    	  <input id="destruido" name="destruido" value="true" type="checkbox" <%= mySQL.get('destruido')?'checked':'' %>> Destruido
+    	</label>
+		</div>
+		<div class="form-group" >
+		<label for="caracteristicas">Caracteristicas</label>
+    	<input type="text" class="form-control" id="caracteristicas" name="caracteristicas" placeholder="Enter value" value="<%= mySQL.get('caracteristicas') %>"/>	
+		</div>
+    </form>
+    </div>
+</script> 

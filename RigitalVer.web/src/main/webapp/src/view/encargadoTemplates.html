@@ -1,0 +1,54 @@
+<script type="text/template" id="encargadoList">
+    <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <table class="table striped">
+    <thead>
+    <tr>
+		 <th>Name</th>
+		 <th>Login</th>
+		 <th>Password</th>
+    <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% _.each(encargados, function(encargado) { %>
+    <tr>
+		<td><%= htmlEncode(encargado.getDisplay('name')) %></td>
+		<td><%= htmlEncode(encargado.getDisplay('login')) %></td>
+		<td><%= htmlEncode(encargado.getDisplay('password')) %></td>
+    <td>
+    <% if(showEdit) {%>
+    <a onclick="Backbone.trigger('<%= componentId %>-encargado-edit',{id:<%= encargado.id %>}); return false" >Edit</a> |
+	<% } %> 
+	<% if(showDelete) {%>
+    <a onclick="Backbone.trigger('<%= componentId %>-encargado-delete',{id:<%= encargado.id %>}); return false" >Delete</a> 
+	<% } %>    
+	</td>
+    </tr>
+    <% }); %>
+    </tbody>
+    </table>
+    </div>
+</script>
+
+<script type="text/template" id="encargado">
+    <div class="form-group">
+    <form role="form" id="<%= componentId %>-encargadoForm">
+    <% if(encargado.id) {%>
+    <input type="hidden" name="id" value="<%= encargado.id %>"/>
+    <% }%>
+		<div class="form-group" >
+		<label for="name">Name</label>
+    	<input type="text" class="form-control" id="name" name="name" placeholder="Enter value" value="<%= encargado.get('name') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="login">Login</label>
+    	<input type="text" class="form-control" id="login" name="login" placeholder="Enter value" value="<%= encargado.get('login') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="password">Password</label>
+    	<input type="text" class="form-control" id="password" name="password" placeholder="Enter value" value="<%= encargado.get('password') %>"/>	
+		</div>
+    </form>
+    </div>
+</script> 
