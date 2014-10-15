@@ -32,7 +32,19 @@ define(['component/_CRUDComponent', 'controller/toolbarController', 'model/toolb
         name: 'usuario',
         model: App.Model.UsuarioModel,
         listModel: App.Model.UsuarioList,
-        controller : App.Controller.UsuarioController
+        controller : App.Controller.UsuarioController,
+       
+        //A partir de aqui hice modificaciones
+        postInit: function(){
+            var self = this;
+            this.toolbarModel.set('createName', 'Agregar');
+            this.toolbarModel.set('refreshName', 'Refrescar');
+            this.toolbarModel.set('saveName', 'Guardar');
+            this.toolbarModel.set('cancelName', 'Cancelar');
+            this.toolbarModel.set('showPrint', false);
+            this.toolbarModel.set('searchName', 'Buscar');
+        }
+        //Hasta aqui
     });
     return App.Component.UsuarioComponent;
 });

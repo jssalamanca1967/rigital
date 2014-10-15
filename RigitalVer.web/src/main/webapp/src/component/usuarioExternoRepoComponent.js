@@ -32,7 +32,19 @@ define(['component/_CRUDComponent', 'controller/toolbarController', 'model/toolb
         name: 'usuarioExternoRepo',
         model: App.Model.UsuarioExternoRepoModel,
         listModel: App.Model.UsuarioExternoRepoList,
-        controller : App.Controller.UsuarioExternoRepoController
+        controller : App.Controller.UsuarioExternoRepoController,
+       
+        //A partir de aqui hice modificaciones
+        postInit: function(){
+            var self = this;
+            this.toolbarModel.set('createName', 'Agregar');
+            this.toolbarModel.set('refreshName', 'Refrescar');
+            this.toolbarModel.set('saveName', 'Guardar');
+            this.toolbarModel.set('cancelName', 'Cancelar');
+            this.toolbarModel.set('showPrint', false);
+            this.toolbarModel.set('searchName', 'Buscar');
+        }
+        //Hasta aqui
     });
     return App.Component.UsuarioExternoRepoComponent;
 });

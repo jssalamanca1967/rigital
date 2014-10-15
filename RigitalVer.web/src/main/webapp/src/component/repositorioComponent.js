@@ -32,7 +32,22 @@ define(['component/_CRUDComponent', 'controller/toolbarController', 'model/toolb
         name: 'repositorio',
         model: App.Model.RepositorioModel,
         listModel: App.Model.RepositorioList,
-        controller : App.Controller.RepositorioController
+        controller : App.Controller.RepositorioController,
+       
+        //A partir de aqui hice modificaciones
+        postInit: function(){
+            var self = this;
+            this.toolbarModel.set('createName', 'Agregar');
+            this.toolbarModel.set('refreshName', 'Refrescar');
+            this.toolbarModel.set('saveName', 'Guardar');
+            this.toolbarModel.set('cancelName', 'Cancelar');
+            this.toolbarModel.set('showPrint', false);
+            this.toolbarModel.set('searchName', 'Buscar');
+            this.addButton({name: "Desactivar seleccionados", icon: "glyphicon-trash", },function(){
+                //Acá se debe agregar a funcion en el controller
+            })
+        }
+        //Hasta aqui
     });
     return App.Component.RepositorioComponent;
 });
