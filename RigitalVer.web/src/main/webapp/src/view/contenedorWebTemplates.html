@@ -4,39 +4,49 @@
     <table class="table striped">
     <thead>
     <tr>
-		 <th>Puertos</th>
+		 <th>Name</th>
+                 <th>Descripcion</th>
+                 <th>Puertos</th>
 		 <th>Servidor</th>
 		 <th>Url</th>
 		 <th>Fecha Vencimiento</th>
-		 <th>Name</th>
-		 <th>Descripcion</th>
 		 <th>Proposito</th>
 		 <th>Fecha Creacion</th>
 		 <th>Destruido</th>
 		 <th>Caracteristicas</th>
-    <th>Actions</th>
+                 <th>Acciones</th>
     </tr>
     </thead>
     <tbody>
     <% _.each(contenedorWebs, function(contenedorWeb) { %>
     <tr>
-		<td><%= htmlEncode(contenedorWeb.getDisplay('puertos')) %></td>
+		<td><%= htmlEncode(contenedorWeb.getDisplay('name')) %></td>
+                <td><%= htmlEncode(contenedorWeb.getDisplay('descripcion')) %></td>
+                <td><%= htmlEncode(contenedorWeb.getDisplay('puertos')) %></td>
 		<td><%= htmlEncode(contenedorWeb.getDisplay('servidor')) %></td>
 		<td><%= htmlEncode(contenedorWeb.getDisplay('url')) %></td>
 		<td><%= htmlEncode(contenedorWeb.getDisplay('fechaVencimiento')) %></td>
-		<td><%= htmlEncode(contenedorWeb.getDisplay('name')) %></td>
-		<td><%= htmlEncode(contenedorWeb.getDisplay('descripcion')) %></td>
 		<td><%= htmlEncode(contenedorWeb.getDisplay('proposito')) %></td>
 		<td><%= htmlEncode(contenedorWeb.getDisplay('fechaCreacion')) %></td>
 		<td><%= htmlEncode(contenedorWeb.getDisplay('destruido')) %></td>
 		<td><%= htmlEncode(contenedorWeb.getDisplay('caracteristicas')) %></td>
     <td>
+    <div class="dropdown">
+  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+    Acciones
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Ver informaci&oacute;n</a></li>
+    <li role="presentation" class="divider"></li>
     <% if(showEdit) {%>
-    <a onclick="Backbone.trigger('<%= componentId %>-contenedorWeb-edit',{id:<%= contenedorWeb.id %>}); return false" >Edit</a> |
-	<% } %> 
-	<% if(showDelete) {%>
-    <a onclick="Backbone.trigger('<%= componentId %>-contenedorWeb-delete',{id:<%= contenedorWeb.id %>}); return false" >Delete</a> 
-	<% } %>    
+    <li role="presentation"><a role="menuitem" tabindex="-1" onclick="Backbone.trigger('<%= componentId %>-contenedorWeb-edit',{id:<%= contenedorWeb.id %>}); return false" >Editar</a></li>
+    <% } %>
+    <% if(showDelete) {%>
+    <li role="presentation"><a role="menuitem" tabindex="-1" onclick="Backbone.trigger('<%= componentId %>-contenedorWeb-delete',{id:<%= contenedorWeb.id %>}); return false" >Eliminar</a></li>
+    <% } %> 
+  </ul>
+</div>    
 	</td>
     </tr>
     <% }); %>
@@ -52,6 +62,14 @@
     <input type="hidden" name="id" value="<%= contenedorWeb.id %>"/>
     <% }%>
 		<div class="form-group" >
+		<label for="name">Name</label>
+    	<input type="text" class="form-control" id="name" name="name" placeholder="Enter value" value="<%= contenedorWeb.get('name') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="descripcion">Descripcion</label>
+    	<textarea class="form-control" id="descripcion" name="descripcion" placeholder="Enter value" value="<%= contenedorWeb.get('descripcion') %>" cols="30" rows="4"/>	
+		</div>
+                <div class="form-group" >
 		<label for="puertos">Puertos</label>
     	<input type="text" class="form-control" id="puertos" name="puertos" placeholder="Enter value" value="<%= contenedorWeb.get('puertos') %>"/>	
 		</div>
@@ -70,14 +88,6 @@
         	$('#fechaVencimiento').datepicker({autoclose:true});
         	$('#fechaVencimiento').datepicker('setDate',App.Utils.Converter.date.toDate("<%= contenedorWeb.get('fechaVencimiento') %>"));
     		<%= '</scr'+'ipt>' %>
-		</div>
-		<div class="form-group" >
-		<label for="name">Name</label>
-    	<input type="text" class="form-control" id="name" name="name" placeholder="Enter value" value="<%= contenedorWeb.get('name') %>"/>	
-		</div>
-		<div class="form-group" >
-		<label for="descripcion">Descripcion</label>
-    	<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Enter value" value="<%= contenedorWeb.get('descripcion') %>"/>	
 		</div>
 		<div class="form-group" >
 		<label for="proposito">Proposito</label>

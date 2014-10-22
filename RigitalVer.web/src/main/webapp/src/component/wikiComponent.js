@@ -44,7 +44,10 @@ define(['component/_CRUDComponent', 'controller/toolbarController', 'model/toolb
             this.toolbarModel.set('showPrint', false);
             this.toolbarModel.set('searchName', 'Buscar');
             this.addButton({name: "Desactivar seleccionados", icon: "glyphicon-trash", },function(){
-                //Acá se debe agregar a funcion en el controller
+                //Acá se debe agregar la funcion en el controller
+            })
+            this.addButton({name: "Seleccionar todo", icon: "glyphicon-check", }, function(){
+                //Acá se debe agregar la funcion en el controller
             })
         }
         //Hasta aqui

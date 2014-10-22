@@ -42,7 +42,9 @@ define(['component/_CRUDComponent', 'controller/toolbarController', 'model/toolb
             this.toolbarModel.set('saveName', 'Guardar');
             this.toolbarModel.set('cancelName', 'Cancelar');
             this.toolbarModel.set('showPrint', false);
-            this.toolbarModel.set('searchName', 'Buscar');
+            this.toolbarModel.set('searchName', 'Buscar');this.addButton({name: "Seleccionar todo", icon: "glyphicon-check", }, function(){
+                //Acá se debe agregar la funcion en el controller
+            })
         }
         //Hasta aqui
     });
